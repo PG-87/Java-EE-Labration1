@@ -19,7 +19,6 @@ public class StudentService {
     }
 
     public Student updateStudent(Student student) {
-        if (student != null)
         entityManager.merge(student);
         return student;
     }

@@ -55,13 +55,16 @@ public class StudentRest {
     @Path("update")
     @PUT
     public Response updateStudent(Student student) {
-        Student updatedStudent = studentService.updateStudent(student);
-        if (updatedStudent != null) {
-            return Response
-                   .ok(updatedStudent)
-                   .build();
+        if (
+            student.getFirstName() == null ||
+            student.getLastName() == null ||
+            student.getEmail() == null ||
+            student.getId() == null)
+        {
+            throw new StudentNotFoundException("Data is incomplete!");
         } else {
-            throw new StudentNotFoundException("Cant find student to update!");
+        Student updatedStudent = studentService.updateStudent(student);
+        return Response.ok(updatedStudent).build();
         }
     }
 

@@ -26,7 +26,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>se.iths</finalName>
+        <finalName>labration1</finalName>
     </build>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
