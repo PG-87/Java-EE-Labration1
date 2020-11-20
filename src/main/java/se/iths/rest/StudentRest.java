@@ -1,6 +1,7 @@
 package se.iths.rest;
 
 import se.iths.entity.Student;
+import se.iths.entity.Subject;
 import se.iths.service.StudentService;
 
 import javax.inject.Inject;
@@ -8,6 +9,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Set;
 
 @Path("student")
 @Produces(MediaType.APPLICATION_JSON)
@@ -92,5 +94,10 @@ public class StudentRest {
         } else {
             throw new StudentNotFoundException("Wrong Id!");
         }
+    }
+    @Path("getstudentsforsubject/{subjectname}")
+    @GET
+    public Set<Student> getStudentsForSubject(@PathParam("subjectname") String subject) {
+        return studentService.getStudentsForSubject(subject);
     }
 }

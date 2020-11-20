@@ -35,4 +35,15 @@ public class SubjectRest {
     public List<Subject> getSubjectSortedByCategory() {
         return subjectService.getAllSubjectsSortedByCategory();
     }
+
+    @Path("{subjectName}")
+    @GET
+    public List<Subject> getSubjectByName(@PathParam("subjectName") String category) {
+        List<Subject> foundSubjects = subjectService.findSubjectByName(category);
+        if( !foundSubjects.isEmpty()) {
+            return subjectService.findSubjectByName(category);
+        } else {
+            throw new StudentNotFoundException("Cant find subject");
+        }
+    }
 }

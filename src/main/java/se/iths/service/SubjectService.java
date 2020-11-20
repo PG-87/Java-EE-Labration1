@@ -1,5 +1,6 @@
 package se.iths.service;
 
+import se.iths.entity.Student;
 import se.iths.entity.Subject;
 
 import javax.persistence.EntityManager;
@@ -26,5 +27,11 @@ public class SubjectService {
     public List<Subject> getAllSubjectsSortedByCategory(){
         String query = "SELECT i FROM Subject i ORDER BY i.category";
         return entityManager.createQuery(query, Subject.class).getResultList();
+    }
+
+    public List<Subject> findSubjectByName(String category) {
+        return entityManager
+                .createQuery("SELECT s FROM Subject s WHERE s.category =\'" + category + "\'", Subject.class)
+                .getResultList();
     }
 }
