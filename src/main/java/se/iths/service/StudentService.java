@@ -1,6 +1,7 @@
 package se.iths.service;
 
 import se.iths.entity.Student;
+import se.iths.entity.Subject;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -39,5 +40,11 @@ public class StudentService {
 
     public void removeStudentById(Long id) {
         entityManager.remove(findStudentById(id));
+    }
+
+    public void addSubject(String category) {
+        Subject subject = new Subject();
+        subject.setCategory(category);
+        entityManager.persist(subject);
     }
 }

@@ -6,16 +6,22 @@ import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity (name = "Student")
-public class Student {
+@Entity (name = "Teacher")
+public class Teacher {
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.PERSIST)
     private Set<Subject> subjects = new HashSet<>();
 
-    public void addSubject(Subject subject){
+    public void addSubject(Subject subject) {
         subjects.add(subject);
-        subject.getStudents().add(this);
+        subject.setTeacher(this);
     }
+
+    public void removeSubject(Subject subject) {
+        subject.remove(subject);
+        subject.setTeacher(null);
+    }
+
     @Id
     @GeneratedValue
     private Long id;
@@ -23,22 +29,24 @@ public class Student {
     @NotEmpty
     @NotNull
     private String firstName;
-    @NotEmpty
-    @NotNull
-    private String lastName;
-    @NotEmpty
-    @NotNull
-    private String email;
 
+    @NotNull
+    @NotEmpty
+    private String lastName;
+
+    private String mail;
     private String phoneNumber;
 
-    public Student(@NotEmpty @NotNull String firstName, @NotEmpty @NotNull String lastName, @NotEmpty @NotNull String email) {
+
+
+    public Teacher(@NotEmpty @NotNull String firstName, @NotNull @NotEmpty String lastName, String mail, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.mail = mail;
+        this.phoneNumber = phoneNumber;
     }
 
-    public Student() {
+    public Teacher() {
     }
 
     public Long getId() {
@@ -62,11 +70,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMail() {
+        return mail;
     }
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getPhoneNumber() {

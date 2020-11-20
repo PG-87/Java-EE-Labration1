@@ -81,4 +81,16 @@ public class StudentRest {
             throw new StudentNotFoundException("Wrong Id!");
         }
     }
+
+    @Path("addSubject/{id}")
+    @PATCH
+    public Response addSubjectToStudent(@PathParam("id") Long id, String subject){
+        Student foundStudent = studentService.findStudentById(id);
+        if(foundStudent != null){
+            studentService.addSubject(subject);
+            return Response.ok(foundStudent).build();
+        } else {
+            throw new StudentNotFoundException("Wrong Id!");
+        }
+    }
 }
