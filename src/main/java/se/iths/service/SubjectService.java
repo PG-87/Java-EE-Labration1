@@ -1,10 +1,8 @@
 package se.iths.service;
 
-import se.iths.entity.Student;
 import se.iths.entity.Subject;
 
 import javax.persistence.EntityManager;
-import javax.persistence.JoinColumn;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;

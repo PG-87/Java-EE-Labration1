@@ -31,6 +31,7 @@ public class SampleDataGenerator {
         Teacher teacher = new Teacher("Roger", "Niklasson", "roger.niklasson@iths.se", "0742-771233");
 
         student1.addSubject(subject1);
+        student1.addSubject(subject2);
         student2.addSubject(subject1);
         student3.addSubject(subject2);
         student4.addSubject(subject2);
